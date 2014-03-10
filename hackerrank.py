@@ -1,11 +1,13 @@
 import requests
 import time
 import sys
+import os.path
 
 class HackerRank:
-    def __init__(self,url,code=""):
+    def __init__(self,url,code="",ext=".py"):
         self.code = code
-        self.language = "python"
+        self.ext = ext
+        self.set_language()
         self.problem_url = url
         self.s = requests.session()
         self.payload = {'code' : self.code, 'language' : self.language}
@@ -13,8 +15,12 @@ class HackerRank:
         contestUrl = "/".join(url.split("/")[3:])
         self.post_url = rootUrl + "/rest/" + contestUrl + "/compile_tests/"
 
-    def set_language(self, lang):
-        self.language = lang
+    def set_language(self):
+        if self.ext == ".py":
+            self.language = "python"
+        if self.ext == ".c":
+            self.language = "c"
+        # TODO : find out the language value for other exts
 
     def set_code(self,code):
         self.code = code
@@ -89,6 +95,7 @@ class HackerRank:
 if __name__=="__main__":
     url = sys.argv[1]
     codefile = sys.argv[2]
+    ext = os.path.splitext(codefile)[1]
     code = open(codefile).read()
-    h = HackerRank(url,code)
+    h = HackerRank(url,code,ext)
     h.run()
