@@ -52,6 +52,11 @@ class HackerRank:
             return
         self.rr = self.s.get(self.get_url, cookies = self.s.cookies)
         self.res = self.rr.json()
+        if self.res['model']['status'] == 0:
+           time.sleep(1)
+           self.fetch()
+        else:
+            return
 
     def compiler_message(self):
         return self.res['model']['compilemessage']
@@ -96,7 +101,6 @@ class HackerRank:
     def run(self):
         if self.compile_and_test() == "NOT_FOUND":
             return "404 : NOT_FOUND"
-        time.sleep(10)
         self.fetch()
         return self.dump()
 
