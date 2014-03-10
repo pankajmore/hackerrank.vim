@@ -11,8 +11,16 @@ class HackerRank:
         self.problem_url = url
         self.s = requests.session()
         self.payload = {'code' : self.code, 'language' : self.language}
+        self.set_post_url()
+
+    def set_post_url(self):
         rootUrl = "https://www.hackerrank.com/"
-        contestUrl = "/".join(url.split("/")[3:])
+        l = self.problem_url.split("/")
+        if l[3] == "challenges":
+            contestUrl = "/contests/master/challenges/" + l[4]
+        else:
+            # it's a contest
+            contestUrl = "/".join(l[3:])
         self.post_url = rootUrl + "/rest/" + contestUrl + "/compile_tests/"
 
     def set_language(self):
