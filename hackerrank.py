@@ -10,7 +10,6 @@ class HackerRank:
         self.set_language()
         self.problem_url = url
         self.s = requests.session()
-        self.payload = {'code' : self.code, 'language' : self.language}
         self.set_post_url()
 
     def set_post_url(self):
@@ -88,20 +87,20 @@ class HackerRank:
         stdout = self.stdout()
         s = ""
         for i in range(len(tm)):
-            s += (cm + "\n")
+            s += (cm + "\n\n")
             s += ("Testcase# " + str(i) + "\n")
             s += ("Sample Input:\n\n")
             s += (stdin[i])
-            s += ("\n")
+            s += ("\n\n")
             s += ("Your Output:\n\n")
             s += (stdout[i])
-            s += ("\n")
+            s += ("\n\n")
             s += ("Expected Output:\n\n")
             s += (eo[i])
             s += ("\n\n")
-            s += ("Compiler Message:\n")
+            s += ("Compiler Message:\n\n")
             s += (tm[i])
-            s += ("\n")
+            s += ("\n\n")
             print(s)
             return s
 
