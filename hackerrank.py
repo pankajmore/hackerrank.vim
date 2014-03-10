@@ -30,6 +30,8 @@ class HackerRank:
             self.language = "c"
         if self.ext == ".cpp":
             self.language = "cpp"
+        if self.ext == ".java":
+            self.language = "java"
         # TODO : find out the language value for other exts
 
     def set_code(self,code):
