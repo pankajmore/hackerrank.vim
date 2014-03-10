@@ -14,16 +14,16 @@ def create_new_buffer(file_name, file_type, contents):
     vim.command('setlocal buftype=nowrite')
     vim.command('call append(0, {0})'.format(contents))
 
-def make_results_buffer():
+out = h.run()
+
+def make_results_buffer(out):
     buf = vim.current.buffer
     code = "".join(buf)
     h.set_code(code)
-    contents = ["Hello World", h.language]
+    contents = [out]
     create_new_buffer("Results", "txt", contents)
 
-make_results_buffer()
-
-h.run()
+make_results_buffer(out)
 
 endPython
 endfunction

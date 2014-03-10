@@ -1,0 +1,16 @@
+Strictly Alpha (Use at your own risk!)
+======================
+
+Two ways to use this:
+
+Make sure requests is installed
+
+> python <problem_url> <solution_file_path>
+
+Inside Vim:
+
+load hack.vim into vim
+
+set the current buffer to the solution file
+
+:call HackerRank(<problem_url>)
