@@ -51,14 +51,17 @@ class HackerRank:
         self.rr = self.s.get(self.get_url, cookies = self.s.cookies)
         return self.rr
 
-    def fetch(self):
+    def fetch(self,last_status):
         if self.r.status_code == 404:
             return
         self.rr = self.s.get(self.get_url, cookies = self.s.cookies)
         self.res = self.rr.json()
         if self.res['model']['status'] == 0:
-           time.sleep(1)
-           self.fetch()
+            new_status = self.res['model']['status_string']
+            if new_status != last_status:
+                print(new_status)
+            time.sleep(1)
+            self.fetch(new_status)
         else:
             return
 
@@ -105,7 +108,7 @@ class HackerRank:
     def run(self):
         if self.compile_and_test() == "NOT_FOUND":
             return "404 : NOT_FOUND"
-        self.fetch()
+        self.fetch("")
         return self.dump()
 
 if __name__=="__main__":
