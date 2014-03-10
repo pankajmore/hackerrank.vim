@@ -1,16 +1,26 @@
 Strictly Alpha (Use at your own risk!)
 ======================
 
-Two ways to use this:
+How to use this:
 
-Make sure requests is installed
+Make sure requests(python module) is installed
+
+On Command-line
+----------------------
 
 > python <problem_url> <solution_file_path>
 
-Inside Vim:
+Vim
+-----
 
-load hack.vim into vim
+* load hack.vim into vim
+* set the current buffer to the solution file
+* :call HackerRank(<problem_url>)
 
-set the current buffer to the solution file
+Emacs
+---------
 
-:call HackerRank(<problem_url>)
+* fix the path of hackerrank.py in elisp
+* eval hackerrank.el
+*  M-x hackerRank-compile-and-test
+* enter the problem's url
